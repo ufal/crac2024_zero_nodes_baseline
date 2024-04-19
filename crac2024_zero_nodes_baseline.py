@@ -492,12 +492,14 @@ def main(params: list[str] | None = None) -> None:
 
     # If supplied, load configuration from a trained model
     if args.load:
+        kagglehub_dir = None
         if not os.path.exists(args.load):
-            args.load = kagglehub.model_download(args.load)
+            args.load = kagglehub_dir = kagglehub.model_download(args.load)
         with open(os.path.join(args.load, "options.json"), mode="r") as options_file:
             args = argparse.Namespace(**{k: v for k, v in json.load(options_file).items() if k not in [
                 "dev", "exp", "load", "test", "threads", "verbose"]})
             args = parser.parse_args(params, namespace=args)
+        args.load = kagglehub_dir or args.load
     else:
         assert args.train, "Either --load or --train must be set."
 
