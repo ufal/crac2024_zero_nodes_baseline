@@ -23,6 +23,9 @@ model for predicting zero nodes, trained on CorefUD 1.2 data. It will be release
 on KaggleHub under the CC BY-NC-SA 4.0 license, and it will also be downloaded
 automatically by `crac2024_zero_nodes_baseline` when running inference.
 
+The model was used to generate baseline zero nodes prediction in the
+[CRAC 2024 Shared Task on Multilingual Coreference Resolution](https://ufal.mff.cuni.cz/corefud/crac24).
+
 The model is language agnostic, so in theory it can be used to
 predict coreference in any `XLM-RoBERTa` language.
 
