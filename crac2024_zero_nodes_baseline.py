@@ -19,6 +19,7 @@ import pickle
 import re
 os.environ.setdefault("KERAS_BACKEND", "torch")
 
+import kagglehub
 import keras
 import numpy as np
 import torch
@@ -491,6 +492,8 @@ def main(params: list[str] | None = None) -> None:
 
     # If supplied, load configuration from a trained model
     if args.load:
+        if not os.path.exists(args.load):
+            args.load = kagglehub.model_download(args.load)
         with open(os.path.join(args.load, "options.json"), mode="r") as options_file:
             args = argparse.Namespace(**{k: v for k, v in json.load(options_file).items() if k not in [
                 "dev", "exp", "load", "test", "threads", "verbose"]})
