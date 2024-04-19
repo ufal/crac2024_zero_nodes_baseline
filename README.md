@@ -19,9 +19,11 @@ CC BY-NC-SA license.
 ## The Released `crac2024_zero_nodes_baseline` Model
 
 The `crac2024_zero_nodes_baseline` is a `XLM-RoBERTa-large`-based multilingual
-model for predicting zero nodes, trained on CorefUD 1.2 data. It will be released
-on KaggleHub under the CC BY-NC-SA 4.0 license, and it will also be downloaded
-automatically by `crac2024_zero_nodes_baseline` when running inference.
+model for predicting zero nodes, trained on CorefUD 1.2 data. It is [released
+on KaggleHub](https://www.kaggle.com/models/ufal-mff/crac2024_zero_nodes_baseline/)
+under the CC BY-NC-SA 4.0 license, and it will also be downloaded
+automatically by `crac2024_zero_nodes_baseline` when running inference using the
+`--load ufal-mff/crac2024_zero_nodes_baseline/keras/1` argument.
 
 The model was used to generate baseline zero nodes prediction in the
 [CRAC 2024 Shared Task on Multilingual Coreference Resolution](https://ufal.mff.cuni.cz/corefud/crac24).
@@ -47,12 +49,12 @@ To train a single multilingual model on all the data using `XLM-RoBERTa-large`, 
 
 ## Predicting with a Trained Model.
 
-To predict with a trained model, use the following arguments:
+To predict with the released `crac2024_zero_nodes_baseline` model, use the following arguments:
 ```sh
-crac2024_zero_nodes_baseline.py --load crac2024_zero_nodes_baseline --exp target_directory --test input1.conllu input2.conllu
+crac2024_zero_nodes_baseline.py --load ufal-mff/crac2024_zero_nodes_baseline/keras/1 --exp target_directory --test input1.conllu input2.conllu
 ```
-- if the load directory does not exist, a model of the corresponding name is
-  downloaded from KaggleHub;
+- instead of a KaggleHub identifier, you can use directory name – if the given
+  path name exists, model is loaded from it;
 - the outputs are generated in the target directory, with `.predicted.conllu` suffix;
 - if you want to also evaluate the predicted files, you can use `--dev` option instead of `--test`;
   that way, another file with `.predicted.conllu.eval` suffix will be created by `crac2024_zero_nodes_eval.py`.
